@@ -33,4 +33,21 @@ describe('02 - Products Model', function () {
     });
   });
 
+  describe('Criar novo produto', function () {
+    afterEach(() => {
+      sinon.restore();
+    });
+
+    it('Deverá retornar o novo ID de produto', async function () {
+      const newProduct = {
+        name: 'Product X',
+      }
+
+      sinon.stub(connection, 'execute').resolves([{ insertId: 4}]);
+      
+      const result = await productsModel.createProduct(newProduct);
+      expect(result).to.be.deep.equal(4);
+    });
+  });
+
 })
