@@ -26,9 +26,9 @@ describe('02 - Products Model', function () {
     });
 
     it('Deverá retornar o produto solicitado', async function () {
-      sinon.stub(connection, 'execute').resolves([productsList[1]]);
+      sinon.stub(connection, 'execute').resolves([[productsList[1]]]);
       
-      const result = await productsModel.getProducts(2);
+      const result = await productsModel.getProductsById(2);
       expect(result).to.be.deep.equal(productsList[1]);
     });
   });
