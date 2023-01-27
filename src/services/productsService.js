@@ -7,7 +7,6 @@ const getProducts = async () => {
 
 const getProductsById = async (productId) => {
   const product = await productsModel.getProductsById(productId);
-  console.log(product);
   if (!product) {
     return ({
       status: 404,
