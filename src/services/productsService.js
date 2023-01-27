@@ -19,7 +19,13 @@ const getProductsById = async (productId) => {
   });
 };
 
+const createProduct = async ({ name }) => {
+  const id = await productsModel.createProduct({ name });
+  return { id, name };
+};
+
 module.exports = {
   getProducts,
   getProductsById,
+  createProduct,
 };
