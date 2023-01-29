@@ -29,7 +29,6 @@ const createProduct = async ({ name }) => {
   if (error) {
     if (error.message === '"name" is required') {
       const e = { status: 400, message: error.message };
-      //  console.log(e);
       throw e;
     } else {
       const e = { status: 422, message: error.message };

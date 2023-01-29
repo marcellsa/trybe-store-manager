@@ -6,7 +6,7 @@ const productsList = require('../mocks/productsList.json');
 const { expect } = chai;
 
 
-describe('02 - Products Model', function () {
+describe('Products Model', function () {
   describe('Listar todos os produtos', function () {
     afterEach(() => {
       sinon.restore();
