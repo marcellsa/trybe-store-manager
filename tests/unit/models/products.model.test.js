@@ -7,7 +7,7 @@ const { expect } = chai;
 
 
 describe('Products Model', function () {
-  describe('Listar todos os produtos', function () {
+  describe('REQ-02 - Listar todos os produtos', function () {
     afterEach(() => {
       sinon.restore();
     });
@@ -20,7 +20,7 @@ describe('Products Model', function () {
     });
   });
 
-  describe('Listar produto pelo ID', function () {
+  describe('REQ-02 - Listar produto pelo ID', function () {
     afterEach(() => {
       sinon.restore();
     });
@@ -33,7 +33,7 @@ describe('Products Model', function () {
     });
   });
 
-  describe('Criar novo produto', function () {
+  describe('REQ-03 - Criar novo produto', function () {
     afterEach(() => {
       sinon.restore();
     });
