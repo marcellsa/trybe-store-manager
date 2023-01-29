@@ -26,13 +26,18 @@ const getProductsById = async (productId) => {
 
 const createProduct = async ({ name }) => {
   const { error } = productSchema.validate({ name });
-  if (error.message === '"name" is required') {
-    const e = { status: 400, message: error.message };
-    throw e;
-  } else {
-    const e = { status: 422, message: error.message };
-    throw e;
+  if (error) {
+    if (error.message === '"name" is required') {
+      const e = { status: 400, message: error.message };
+      //  console.log(e);
+      throw e;
+    } else {
+      const e = { status: 422, message: error.message };
+      throw e;
+    }
   }
+  const id = await productsModel.createProduct({ name });
+  return { id, name };
 };
 
 module.exports = {
