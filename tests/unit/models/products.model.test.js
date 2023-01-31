@@ -43,11 +43,11 @@ describe('Products Model', function () {
         name: 'Product X',
       }
 
-      sinon.stub(connection, 'execute').resolves([{ insertId: 4}]);
+      sinon.stub(connection, 'execute').resolves([{ insertId: 4 }]);
       
       const result = await productsModel.createProduct(newProduct);
       expect(result).to.be.deep.equal(4);
     });
   });
 
-})
+});
