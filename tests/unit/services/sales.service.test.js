@@ -36,13 +36,13 @@ describe('Sales Service', function () {
       expect(result.message).to.be.deep.equal({ message: 'Sale not found' });
     });
 
-    it('Deverá retornar TRUE se a venda existir existir', async function () {
+    it('Deverá retornar TRUE se a venda existir', async function () {
       const saleId = 2;
 
-      sinon.stub(salesModel, 'getSales').resolves(salesList[2]);
+      sinon.stub(salesModel, 'getSalesById').resolves(salesList[2]);
       
       const result = await salesService.getSalesById(saleId);
-      expect(result.message).to.be.deep.equal(salesList[1]);
+      expect(result.message).to.be.deep.equal(salesList[2]);
     });
   });
 
