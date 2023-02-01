@@ -39,8 +39,14 @@ const createProduct = async ({ name }) => {
   return { id, name };
 };
 
+const updateProduct = async (produto, id) => {
+  const updatedProduct = await productsModel.updateProduct(produto, id);
+  return updatedProduct;
+};
+
 module.exports = {
   getProducts,
   getProductsById,
   createProduct,
+  updateProduct,
 };

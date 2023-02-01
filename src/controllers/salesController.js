@@ -8,11 +8,21 @@ const getSales = async (_req, res) => {
 const getSalesById = async (req, res) => {
   const { id } = req.params;
   const { status, message } = await salesService.getSalesById(id);
-  console.log('controller em ação');
   res.status(status).json(message);
+};
+
+const createSale = async (req, res) => {
+  try {
+    const sale = req.body;
+    const saleId = await salesService.createSale(sale);
+    res.status(201).json({ id: saleId, itemsSold: sale });
+  } catch (error) {
+    return res.status(error.status).json({ message: error.message });
+  }
 };
 
 module.exports = {
   getSales,
   getSalesById,
+  createSale,
 };

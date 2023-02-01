@@ -26,7 +26,7 @@ describe('Sales Controller', function () {
       sinon.stub(salesService, 'getSales').resolves([salesList]);
       
       await salesController.getSales(req, res);
-      expect(res.status).to.has.been.calledWith(200);
+      expect(res.status).to.have.been.calledWith(200);
       expect(res.json).to.have.been.calledWithExactly([salesList]);
     });
   });

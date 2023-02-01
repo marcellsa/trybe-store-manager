@@ -44,14 +44,15 @@ describe('Products Controller', function () {
       sinon.restore();
     });
 
-    it('Deverá retornar a response com status com status 400 e mensagem not found', async function () {
-      req.params = { id: 9 };
+    it('Deverá retornar a response com status 404 e mensagem not found', async function () {
+      req.params = { id: 7 };
 
       sinon.stub(productsService, 'getProductsById').resolves(false);
       
       await productsController.getProductsById(req, res);
+
       expect(res.status).to.have.been.calledWith(404);
-      expect(res.json).to.have.been.calledWithExactly({ message: "Product not found" });
+      expect(res.json).to.have.been.calledWithExactly({ message: 'Product not found' });
     });
   });
 

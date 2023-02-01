@@ -17,9 +17,10 @@ const getSalesById = async (saleId) => {
   WHERE id = ?
   AND s.id = sp.sale_id`;
   const [sale] = await connection.execute(query, [saleId]);
-  console.log(sale);
   return sale;
 };
+
+// const createSale = async 
 
 module.exports = {
   getSales,
