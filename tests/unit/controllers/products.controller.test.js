@@ -47,7 +47,10 @@ describe('Products Controller', function () {
     it('Deverá retornar a response com status 404 e mensagem not found', async function () {
       req.params = { id: 7 };
 
-      sinon.stub(productsService, 'getProductsById').resolves(false);
+      sinon.stub(productsService, 'getProductsById').resolves({
+      status: 404,
+      message: { message: 'Product not found' },
+      });
       
       await productsController.getProductsById(req, res);
 

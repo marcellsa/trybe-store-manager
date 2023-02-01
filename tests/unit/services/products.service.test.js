@@ -39,7 +39,7 @@ describe('Products Service', function () {
     it('Deverá retornar TRUE se o produto existir', async function () {
       const productId = 2;
 
-      sinon.stub(productsModel, 'getProducts').resolves(productsList[1]);
+      sinon.stub(productsModel, 'getProductsById').resolves(productsList[1]);
       
       const result = await productsService.getProductsById(productId);
       expect(result.message).to.be.deep.equal(productsList[1]);

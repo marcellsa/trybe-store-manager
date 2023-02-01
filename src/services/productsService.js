@@ -40,8 +40,8 @@ const createProduct = async ({ name }) => {
 };
 
 const updateProduct = async (produto, id) => {
-  const updatedProduct = await productsModel.updateProduct(produto, id);
-  return updatedProduct;
+  await productsModel.updateProduct(produto, id);
+  return ({ id, name: produto.name });
 };
 
 module.exports = {
