@@ -46,21 +46,23 @@ describe('Products Service', function () {
     });
   });
 
-  // describe('REQ-03 - Criar novo produto', function () {
-  //   afterEach(() => {
-  //     sinon.restore();
-  //   });
+  describe('REQ-03 - Criar novo produto', function () {
+    afterEach(() => {
+      sinon.restore();
+    });
 
-  //   it('Deverá retornar o novo ID de produto', async function () {
-  //     const newProduct = {
-  //       name: 'Product X',
-  //     }
+    it('Deverá retornar o novo ID de produto', async function () {
+      const newProduct = {
+        name: 'Product X',
+      }
 
-  //     sinon.stub(connection, 'execute').resolves([{ insertId: 4}]);
+      const newId = 4;
+
+      sinon.stub(productsModel, 'createProduct').resolves(newId);
       
-  //     const result = await productsModel.createProduct(newProduct);
-  //     expect(result).to.be.deep.equal(4);
-  //   });
-  // });
+      const result = await productsService.createProduct(newProduct);
+      expect(result).to.be.deep.equal({ id: newId, ...newProduct});
+    });
+  });
 
 });
