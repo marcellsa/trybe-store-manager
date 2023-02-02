@@ -31,4 +31,33 @@ describe('Sales Controller', function () {
     });
   });
 
+  describe('REQ-02 - Listar venda por ID', function () {
+    const req = {};
+    const res = {};
+
+    beforeEach(() => {
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+    });
+    
+    afterEach(() => {
+      sinon.restore();
+    });
+
+    it('Deverá retornar a response com status 404 e mensagem not found', async function () {
+      req.params = { id: 7 };
+
+      sinon.stub(salesService, 'getSalesById').resolves({
+      status: 404,
+      message: { message: 'Sale not found' },
+      });
+      
+      await salesController.getSalesById(req, res);
+
+      expect(res.status).to.have.been.calledWith(404);
+      expect(res.json).to.have.been.calledWithExactly({ message: 'Sale not found' });
+    });
+    
+  });
+
 });

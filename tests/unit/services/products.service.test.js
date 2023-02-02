@@ -27,7 +27,7 @@ describe('Products Service', function () {
       sinon.restore();
     });
 
-    it('Deverá retornar FALSE se o produto existir', async function () {
+    it('Deverá retornar NOT FOUND se o produto existir', async function () {
       const productId = 2;
 
       sinon.stub(productsModel, 'getProductsById').resolves(undefined);
@@ -36,7 +36,7 @@ describe('Products Service', function () {
       expect(result.message).to.be.deep.equal({ message: 'Product not found' });
     });
 
-    it('Deverá retornar TRUE se o produto existir', async function () {
+    it('Deverá retornar o produto se existir', async function () {
       const productId = 2;
 
       sinon.stub(productsModel, 'getProductsById').resolves(productsList[1]);
@@ -63,6 +63,16 @@ describe('Products Service', function () {
       const result = await productsService.createProduct(newProduct);
       expect(result).to.be.deep.equal({ id: newId, ...newProduct});
     });
+
+    it('Deverá retornar name is required', async function () {
+      const newProduct = { };
+      
+      sinon.stub(productsModel, 'createProduct').resolves({ "message": "\"name\" is required" });
+      
+      const result = await productsService.createProduct(newProduct);
+      expect(result.message).to.be.deep.equal({ "message": "\"name\" is required" });
+    });
+
   });
 
 });
