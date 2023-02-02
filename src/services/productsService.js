@@ -5,6 +5,19 @@ const productSchema = Joi.object({
   name: Joi.string().min(5).max(30).required(),
 });
 
+// const validateName = (name) => {
+//   const { error } = productSchema.validate({ name });
+//   if (error) {
+//     if (error.message === '"name" is required') {
+//       const e = { status: 400, message: error.message };
+//       throw e;
+//     } else {
+//       const e = { status: 422, message: error.message };
+//       throw e;
+//     }
+//   }
+// };
+
 const getProducts = async () => {
   const products = await productsModel.getProducts();
   return products;
@@ -39,9 +52,25 @@ const createProduct = async ({ name }) => {
   return { id, name };
 };
 
-const updateProduct = async (produto, id) => {
-  await productsModel.updateProduct(produto, id);
-  return ({ id, name: produto.name });
+const updateProduct = async (name, id) => {
+  const { error } = productSchema.validate({ name });
+  if (error) {
+    if (error.message === '"name" is required') {
+      const e = { status: 400, message: error.message };
+      throw e;
+    } else {
+      const e = { status: 422, message: error.message };
+      throw e;
+    }
+  }
+  const product = await productsModel.getProductsById(id);
+  if (!product) {
+    return ({
+      status: 404, message: { message: 'Product not found' },
+    });
+  }
+  await productsModel.updateProduct(name, id);
+  return ({ id, name });
 };
 
 module.exports = {

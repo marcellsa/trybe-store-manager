@@ -23,9 +23,9 @@ const createProduct = async (req, res) => {
 
 const updateProduct = async (req, res) => {
   try {
-    const produto = req.body;
     const { id } = req.params;
-    const updatedProduct = await productsService.updateProduct(produto, id);
+    const { name } = req.body;
+    const updatedProduct = await productsService.updateProduct(name, id);
     res.status(200).json(updatedProduct);
   } catch (error) {
     return res.status(error.status).json({ message: error.message });

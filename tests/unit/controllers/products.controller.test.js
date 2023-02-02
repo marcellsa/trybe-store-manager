@@ -59,4 +59,33 @@ describe('Products Controller', function () {
     });
   });
 
+  describe('REQ-03 - Criar um novo produto', function () {
+    const req = {};
+    const res = {};
+
+    beforeEach(() => {
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns(res);
+    });
+    
+    afterEach(() => {
+      sinon.restore();
+    });
+
+    it('Deverá retornar um novo produto', async function () {
+      req.body = {
+        'name': 'Espada de Pantera Negra'
+      };
+
+      const newProduct = { id: 4, ...req.body };
+
+      sinon.stub(productsService, 'createProduct').resolves(newProduct);
+      
+      await productsController.createProduct(req, res);
+
+      expect(res.status).to.have.been.calledWith(201);
+      expect(res.json).to.have.been.calledWithExactly(newProduct);
+    });
+  });
+
 });
