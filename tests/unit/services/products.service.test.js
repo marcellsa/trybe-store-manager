@@ -67,7 +67,7 @@ describe('Products Service', function () {
     // it('Deverá retornar name is required', async function () {
     //   const newProduct = {};
       
-    //   sinon.stub(productsModel, 'createProduct').resolves({ "message": '"name" is required' });
+    //   sinon.stub(productsModel, 'createProduct').resolves({ "message": "\"name\" is required" });
       
     //   const result = await productsService.createProduct(newProduct);
     //   expect(result.message).to.be.deep.equal({ "message": "\"name\" is required" });
