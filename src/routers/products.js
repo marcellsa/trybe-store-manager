@@ -4,6 +4,8 @@ const productsController = require('../controllers/productsController');
 
 const router = Router();
 
+router.get('/search', productsController.searchProduct);
+
 router.get('/', productsController.getProducts);
 
 router.get('/:id', productsController.getProductsById);

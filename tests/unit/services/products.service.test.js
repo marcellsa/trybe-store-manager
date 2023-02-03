@@ -64,13 +64,14 @@ describe('Products Service', function () {
       expect(result).to.be.deep.equal({ id: newId, ...newProduct});
     });
 
+    // investigar teste que não passa
     // it('Deverá retornar name is required', async function () {
     //   const newProduct = {};
       
-    //   sinon.stub(productsModel, 'createProduct').resolves({ "message": "\"name\" is required" });
+    //   sinon.stub(productsModel, 'createProduct').resolves({ status: 400, message: "\"name\" is required" });
       
     //   const result = await productsService.createProduct(newProduct);
-    //   expect(result.message).to.be.deep.equal({ "message": "\"name\" is required" });
+    //   expect(result.message).to.be.deep.equal("\"name\" is required");
     // });
 
   });

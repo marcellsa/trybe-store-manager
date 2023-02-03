@@ -294,3 +294,4 @@ coverage
 .nyc*
 *thunder-tests
 thunder-tests/thunderActivity.json
+thunder-tests/thunderActivity.json

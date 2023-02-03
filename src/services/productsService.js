@@ -63,10 +63,19 @@ const deleteProduct = async (id) => {
   return true;
 };
 
+const getProductsByName = async (name) => {
+  const product = await productsModel.getProductsByName(name);
+  if (!product) {
+    return [];
+  }
+  return product;
+};
+
 module.exports = {
   getProducts,
   getProductsById,
   createProduct,
   updateProduct,
   deleteProduct,
+  getProductsByName,
 };

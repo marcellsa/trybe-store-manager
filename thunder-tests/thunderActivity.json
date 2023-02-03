@@ -23,13 +23,18 @@
     "colId": "history",
     "containerId": "",
     "name": "localhost:3000/products/1",
-    "url": "localhost:3000/products/7",
-    "method": "GET",
+    "url": "localhost:3000/products/",
+    "method": "POST",
     "sortNum": 0,
     "created": "2023-01-27T14:43:43.944Z",
-    "modified": "2023-02-02T20:12:48.319Z",
+    "modified": "2023-02-03T22:40:12.204Z",
     "headers": [],
     "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \n}",
+      "form": []
+    },
     "tests": []
   },
   {
@@ -51,13 +56,19 @@
     "colId": "history",
     "containerId": "",
     "name": "localhost:3000/products/",
-    "url": "localhost:3000/products/1",
-    "method": "PUT",
+    "url": "localhost:3000/products/search?q=Martelo",
+    "method": "GET",
     "sortNum": 0,
     "created": "2023-01-27T14:44:30.415Z",
-    "modified": "2023-02-01T21:51:17.960Z",
+    "modified": "2023-02-03T21:14:58.263Z",
     "headers": [],
-    "params": [],
+    "params": [
+      {
+        "name": "q",
+        "value": "Martelo",
+        "isPath": false
+      }
+    ],
     "body": {
       "type": "json",
       "raw": "{\n  \"name\": \"Escudo do Capitão América\"\n}",
