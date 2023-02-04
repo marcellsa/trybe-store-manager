@@ -27,12 +27,12 @@
     "method": "POST",
     "sortNum": 0,
     "created": "2023-01-27T14:43:43.944Z",
-    "modified": "2023-02-03T22:40:12.204Z",
+    "modified": "2023-02-04T12:44:41.775Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \n}",
+      "raw": "{\n  \"name\": \"Bau\"\n}",
       "form": []
     },
     "tests": []

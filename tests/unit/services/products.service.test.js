@@ -64,15 +64,27 @@ describe('Products Service', function () {
       expect(result).to.be.deep.equal({ id: newId, ...newProduct});
     });
 
-    // investigar teste que não passa
-    // it('Deverá retornar name is required', async function () {
-    //   const newProduct = {};
+    it('Deverá retornar name is required', async function () {
+      const newProduct = {};
       
-    //   sinon.stub(productsModel, 'createProduct').resolves({ status: 400, message: "\"name\" is required" });
+      sinon.stub(productsService, 'createProduct').resolves({ status: 400, message: "\"name\" is required" });
       
-    //   const result = await productsService.createProduct(newProduct);
-    //   expect(result.message).to.be.deep.equal("\"name\" is required");
-    // });
+      const result = await productsService.createProduct(newProduct);
+      expect(result.status).to.be.deep.equal(400);
+      expect(result.message).to.be.deep.equal("\"name\" is required");
+    });
+
+    it('Deverá retornar name length must be at least 5 characters long', async function () {
+      const newProduct = {
+        name: "Pá"
+      };
+      
+      sinon.stub(productsService, 'createProduct').resolves({ status: 422, message: "\"name\" length must be at least 5 characters long"});
+      
+      const result = await productsService.createProduct(newProduct);
+      expect(result.status).to.be.deep.equal(422);
+      expect(result.message).to.be.deep.equal("\"name\" length must be at least 5 characters long");
+    });
 
   });
 
