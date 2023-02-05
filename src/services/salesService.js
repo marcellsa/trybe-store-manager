@@ -1,32 +1,26 @@
 const Joi = require('joi');
 const salesModel = require('../models/salesModel');
+const productsModel = require('../models/productsModel');
 
 const productIdSchema = Joi.object({
-  productId: Joi.number().required(),
-  // quantity: Joi.number().positive().required(),
+  productId: Joi.number().required().label('productId'),
+  quantity: Joi.number().min(1).required().label('quantity'),
 });
 
-const validateProductId = (productId) => {
+const validateProductId = (sales) => {
   const productIdArray = Joi.array().items(productIdSchema);
-  const { error } = productIdArray.validate(productId);
+  const { error } = productIdArray.validate(sales);
   if (error) {
-    const e = { status: 400, message: '"productId" is required' };
-    throw e;
+    if (error.message.includes('required')) {
+      const e = { status: 400, message: error.message };
+      throw e;
+    }
+    if (error.message.includes('greater')) {
+      const e = { status: 422, message: error.message };
+      throw e;
+    }
   }
 };
-
-// const validateQuantity = (quantity) => {
-//   const { error } = productIdSchema.validate(quantity);
-//   if (error) {
-//     if (error.status === 400) {
-//       const e = { status: 400, message: '"quantity" is required' };
-//       throw e;
-//     } else {
-//       const e = { status: 422, message: '"quantity" must be greater than or equal to 1' };
-//       throw e;
-//     }
-//   }
-// };
 
 const getSales = async () => {
   const sales = await salesModel.getSales();
@@ -48,11 +42,19 @@ const getSalesById = async (saleId) => {
 };
 
 const createSale = async (sales) => {
-  const saleId = await salesModel.createSale(sale);
-  await Promise.all(sales.map(async (sale) => {
-    const { productId, quantity } = sale;
-  }));
-  await salesModel.createSale(saleId, productId, quantity);
+  console.log(sales);
+  validateProductId(sales);  
+  const products = await productsModel.getProducts();
+  const productsId = products.map((product) => product.id);
+  console.log(productsId);
+  const result = sales
+  .every((item) => productsId.includes(+item.productId));
+  if (!result) {
+    const e = { status: 404, message: 'Product not found' };
+    throw e;
+  }
+  const saleId = await salesModel.createSale(sales);
+  console.log(result);
   return saleId;
 };
 
@@ -71,8 +73,7 @@ const updateSale = async (saleId, productId, quantity) => {
     const e = { status: 404, message: 'Sale not found' };
     throw e;    
   }
-  validateProductId(productId);
-  // validateQuantity(quantity);
+  
   await salesModel.updateSale(saleId, productId, quantity);
   return ({ saleId, productId, quantity });
 };
