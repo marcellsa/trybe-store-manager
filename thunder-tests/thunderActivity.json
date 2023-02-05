@@ -56,16 +56,16 @@
     "colId": "history",
     "containerId": "",
     "name": "localhost:3000/products/",
-    "url": "localhost:3000/products/search?q=Martelo",
+    "url": "localhost:3000/products/search?q=Traje",
     "method": "GET",
     "sortNum": 0,
     "created": "2023-01-27T14:44:30.415Z",
-    "modified": "2023-02-03T21:14:58.263Z",
+    "modified": "2023-02-05T14:55:46.879Z",
     "headers": [],
     "params": [
       {
         "name": "q",
-        "value": "Martelo",
+        "value": "Traje",
         "isPath": false
       }
     ],
@@ -95,11 +95,11 @@
     "colId": "history",
     "containerId": "",
     "name": "localhost:3000/sales/1",
-    "url": "localhost:3000/sales",
+    "url": "localhost:3000/sales/2",
     "method": "GET",
     "sortNum": 0,
     "created": "2023-02-01T13:05:00.977Z",
-    "modified": "2023-02-03T20:03:13.590Z",
+    "modified": "2023-02-04T13:24:07.991Z",
     "headers": [],
     "params": [],
     "tests": []

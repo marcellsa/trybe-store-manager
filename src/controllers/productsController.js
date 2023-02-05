@@ -7,7 +7,7 @@ const getProducts = async (_req, res) => {
 
 const getProductsById = async (req, res) => {
   const { id } = req.params;
-  const { status, message } = await productsService.getProductsById(id);
+  const { status, message } = await productsService.getProductsById(Number(id));
   res.status(status).json(message);
 };
 
@@ -43,12 +43,12 @@ const deleteProduct = async (req, res) => {
 
 const searchProduct = async (req, res) => {
   const name = req.query.q;
-  if (name) {
-    const product = await productsService.getProductsByName(name);
-    res.status(200).json([product]);
+  if (name.length !== 0) {
+    const productByName = await productsService.getProductsByName(name);
+    return res.status(200).json(productByName);  
   }
-  const allproducts = await productsService.getProducts();
-  res.status(200).json(allproducts);
+  const products = await productsService.getProducts();
+  return res.status(200).json(products);
 };
 
 module.exports = {

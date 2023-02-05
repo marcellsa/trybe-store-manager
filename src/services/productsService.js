@@ -64,11 +64,12 @@ const deleteProduct = async (id) => {
 };
 
 const getProductsByName = async (name) => {
-  const product = await productsModel.getProductsByName(name);
-  if (!product) {
-    return [];
-  }
-  return product;
+  const productByName = await productsModel.getProductsByName(name);
+  console.log(productByName);
+  // if (productByName.length !== 0) {
+  //   return productByName;
+  // }
+  return productByName;
 };
 
 module.exports = {

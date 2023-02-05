@@ -13,7 +13,7 @@ const getSalesById = async (req, res) => {
 
 const createSale = async (req, res) => {
   try {
-    const sale = req.body;
+    const sales = req.body;
     const saleId = await salesService.createSale(sale);
     res.status(201).json({ id: saleId, itemsSold: sale });
   } catch (error) {
@@ -33,9 +33,9 @@ const deleteSale = async (req, res) => {
 const updateSale = async (req, res) => {
   try {
     const { id } = req.params;
-    // await salesService.getSalesById(id);
     const { productId, quantity } = req.body;
-    const updatedSale = await salesService.updateSale(id, productId, quantity);
+    const updatedSale = await salesService
+      .updateSale(Number(id), Number(productId), Number(quantity));
     res.status(200).json({ saledId: id, itemUpdated: [...updatedSale] });
   } catch (error) {
     return res.status(error.status).json({ message: error.message });
