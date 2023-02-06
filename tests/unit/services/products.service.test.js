@@ -88,4 +88,45 @@ describe('Products Service', function () {
 
   });
 
+  describe('REQ-15 - Deletar um produto', function () {
+    afterEach(() => {
+      sinon.restore();
+    });
+
+    it('Deverá retornar TRUE para um produto existente', async function () {
+      const productId = 5;
+
+      sinon.stub(productsModel, 'deleteProduct').resolves(true);
+      
+      const result = await productsModel.deleteProduct(productId);
+      expect(result).to.be.true;
+    });
+
+    it('Deverá retornar FALSE para um produto inexistente', async function () {
+      const productId = 6;
+
+      sinon.stub(productsModel, 'getProductsById').resolves(false);
+      
+      const result = await productsModel.getProductsById(productId);
+      expect(result).to.be.false;
+    });
+  });
+
+  describe('REQ-15 - Listar produto pelo name', function () {
+    afterEach(() => {
+      sinon.restore();
+    });
+
+    it('Deverá retornar o produto', async function () {
+      const q = {
+        "name": "Traje"
+      };
+
+      sinon.stub(productsModel, 'getProductsByName').resolves(productsList[1]);
+      
+      const result = await productsService.getProductsByName(q);
+      expect(result).to.be.deep.equal(productsList[1]);
+    });
+  });
+
 });

@@ -88,4 +88,35 @@ describe('Products Controller', function () {
     });
   });
 
+  // aqui
+  // describe('REQ-15 - Atualizar um produto', function () {
+  //   const req = {};
+  //   const res = {};
+
+  //   beforeEach(() => {
+  //     res.status = sinon.stub().returns(res);
+  //     res.json = sinon.stub().returns(res);
+  //   });
+    
+  //   afterEach(() => {
+  //     sinon.restore();
+  //   });
+
+  //   it('Deverá retornar status 200', async function () {
+  //     req.params = { id: 2 }
+  //     req.body = {
+  //       'name': 'Espada de Pantera Negra'
+  //     };
+
+  //     const updateProduct = { id: 2, ...req.body };
+
+  //     sinon.stub(productsService, 'updateProduct').resolves(newProduct);
+      
+  //     await productsController.updateProduct(req, res);
+
+  //     expect(res.status).to.have.been.calledWith(200);
+  //     expect(res.json).to.have.been.calledWithExactly(newProduct);
+  //   });
+  // });
+
 });

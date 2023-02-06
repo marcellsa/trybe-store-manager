@@ -46,4 +46,80 @@ describe('Sales Service', function () {
     });
   });
 
+  describe('REQ-15 - Criando nova venda', function () {
+    afterEach(() => {
+      sinon.restore();
+    });
+
+    it('Deverá retornar uma venda', async function () {
+      const newSale = {
+        productId: 1,
+        quantity: 999
+      };
+
+      const newId = 5;
+
+      sinon.stub(salesModel, 'createSale').resolves({ id: newId, itemsSold: newSale });
+      
+      const result = await salesService.createSale([newSale]);
+      expect(result).to.be.deep.equal({ id: newId, itemsSold: newSale });
+    });
+
+    it('Deverá retornar uma mensagem de error', async function () {
+      const newSale = {
+        quantity: 999
+      };
+
+      const newId = 5;
+
+      // sinon.stub(salesModel, 'createSale').resolves({ id: newId, itemsSold: newSale });
+      
+      try {
+        await salesService.createSale([newSale]);
+        expect(true).to.be.false()
+      } catch (error) {
+        console.log(error);
+        expect(error.message).to.be.deep.equal("\"productId\" is required" );        
+      }
+    });
+
+    // it('REPENSAR Deverá retornar producId is reuired', async function () {
+    //   const newSale = {
+    //     quantity: 999
+    //   };
+
+    //   const newId = 5;
+
+    //   sinon.stub(salesService, 'createSale').resolves({ "message": "\"productId\" is required" });
+      
+    //   const result = await salesModel.createSale(newSale);
+    //   expect(result).to.be.deep.equal({ "message": "\"productId\" is required" });
+    // });   
+
+  });
+
+  describe('REQ-15 - Deletar um venda', function () {
+    afterEach(() => {
+      sinon.restore();
+    });
+
+    it('Deverá retornar TRUE para um venda existente', async function () {
+      const removeId = 5;
+
+      sinon.stub(salesModel, 'getSalesById').resolves(true);
+      
+      const result = await salesService.deleteSale(removeId);
+      expect(result).to.be.true;
+    });
+
+    it('Deverá retornar FALSE para um venda inexistente', async function () {
+      const removeId = 5;
+
+      sinon.stub(salesModel, 'getSalesById').resolves(false);
+      
+      const result = await salesModel.getSalesById(removeId);
+      expect(result).to.be.false;
+    });
+  });
+
 });

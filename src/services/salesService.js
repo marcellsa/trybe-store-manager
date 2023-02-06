@@ -7,7 +7,7 @@ const productIdSchema = Joi.object({
   quantity: Joi.number().min(1).required().label('quantity'),
 });
 
-const validateProductId = (sales) => {
+const validateSale = (sales) => {
   const productIdArray = Joi.array().items(productIdSchema);
   const { error } = productIdArray.validate(sales);
   if (error) {
@@ -42,7 +42,7 @@ const getSalesById = async (saleId) => {
 };
 
 const createSale = async (sales) => {
-  validateProductId(sales);  
+  validateSale(sales);  
   const products = await productsModel.getProducts();
   const productsId = products.map((product) => product.id);
   const result = sales
@@ -51,8 +51,8 @@ const createSale = async (sales) => {
     const e = { status: 404, message: 'Product not found' };
     throw e;
   }
-  const saleId = await salesModel.createSale(sales);
-  return saleId;
+  const sale = await salesModel.createSale(sales);
+  return sale;
 };
 
 const deleteSale = async (id) => {
@@ -65,7 +65,7 @@ const deleteSale = async (id) => {
 };
 
 const updateSale = async (saleId, sales) => {
-  validateProductId(sales);
+  validateSale(sales);
   const products = await productsModel.getProducts();
   const productsId = products.map((product) => product.id);
   const result = sales
