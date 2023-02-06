@@ -42,11 +42,9 @@ const getSalesById = async (saleId) => {
 };
 
 const createSale = async (sales) => {
-  console.log(sales);
   validateProductId(sales);  
   const products = await productsModel.getProducts();
   const productsId = products.map((product) => product.id);
-  console.log(productsId);
   const result = sales
   .every((item) => productsId.includes(+item.productId));
   if (!result) {
@@ -54,7 +52,6 @@ const createSale = async (sales) => {
     throw e;
   }
   const saleId = await salesModel.createSale(sales);
-  console.log(result);
   return saleId;
 };
 
