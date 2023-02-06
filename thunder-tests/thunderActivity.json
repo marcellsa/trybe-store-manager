@@ -85,9 +85,14 @@
     "method": "GET",
     "sortNum": 0,
     "created": "2023-02-01T13:04:53.359Z",
-    "modified": "2023-02-01T13:04:53.359Z",
+    "modified": "2023-02-06T18:52:08.598Z",
     "headers": [],
     "params": [],
+    "body": {
+      "type": "json",
+      "raw": "[\n  {\n    \"productId\": 1,\n    \"quantity\": 251\n  },\n  {\n    \"productId\": 2,\n    \"quantity\": 50\n  }\n]",
+      "form": []
+    },
     "tests": []
   },
   {
@@ -141,12 +146,12 @@
     "method": "PUT",
     "sortNum": 0,
     "created": "2023-02-05T15:24:37.631Z",
-    "modified": "2023-02-05T15:24:37.631Z",
+    "modified": "2023-02-06T19:03:05.910Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "[\n  {\n    \"productId\": 1,\n    \"quantity\": 1\n  },\n  {\n    \"productId\": 2,\n    \"quantity\": 5\n  }\n]",
+      "raw": "[\n  {\n    \"productId\": 1,\n    \"quantity\": 251\n  },\n  {\n    \"productId\": 2,\n    \"quantity\": 50\n  }\n]",
       "form": []
     },
     "tests": []
@@ -160,12 +165,12 @@
     "method": "PUT",
     "sortNum": 0,
     "created": "2023-02-05T15:27:49.677Z",
-    "modified": "2023-02-05T15:31:38.825Z",
+    "modified": "2023-02-06T18:51:55.829Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"productId\": 1,\n  \"quantity\": 1\n}",
+      "raw": "[\n  {\n    \"productId\": 1,\n    \"quantity\": 251\n  },\n  {\n    \"productId\": 2,\n    \"quantity\": 50\n  }\n]",
       "form": []
     },
     "tests": []
@@ -198,12 +203,31 @@
     "method": "GET",
     "sortNum": 0,
     "created": "2023-02-05T18:19:12.223Z",
-    "modified": "2023-02-05T18:19:12.223Z",
+    "modified": "2023-02-06T18:51:45.808Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "[\n  {\n    \"productId\": 1,\n    \"quantity\": 2\n  },\n  {\n    \"productId\": 0,\n    \"quantity\": 7\n  }\n]",
+      "raw": "[\n  {\n    \"productId\": 1,\n    \"quantity\": 251\n  },\n  {\n    \"productId\": 2,\n    \"quantity\": 50\n  }\n]",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "b8e3ce9e-30f1-4d13-8f71-d673a1554446",
+    "colId": "history",
+    "containerId": "",
+    "name": "loclahost:3000/sales/2",
+    "url": "loclahost:3000/sales/2",
+    "method": "PUT",
+    "sortNum": 0,
+    "created": "2023-02-06T12:14:24.723Z",
+    "modified": "2023-02-06T12:14:24.723Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "[\n  {\n    \"productId\": 1,\n    \"quantity\": 10\n  },\n  {\n    \"productId\": 2,\n    \"quantity\": 50\n  }\n]",
       "form": []
     },
     "tests": []

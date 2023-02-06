@@ -64,15 +64,23 @@ const deleteSale = async (id) => {
   return true;
 };
 
-const updateSale = async (saleId, productId, quantity) => {
-  const sale = await salesModel.getSalesById(saleId);
-  if (sale.length === 0) {
+const updateSale = async (saleId, sales) => {
+  validateProductId(sales);
+  const products = await productsModel.getProducts();
+  const productsId = products.map((product) => product.id);
+  const result = sales
+  .every((item) => productsId.includes(+item.productId));
+  if (!result) {
+    const e = { status: 404, message: 'Product not found' };
+    throw e;
+  }
+  const isThereSale = await salesModel.getSalesById(saleId);
+  if (isThereSale.length === 0) {
     const e = { status: 404, message: 'Sale not found' };
     throw e;    
   }
-  
-  await salesModel.updateSale(saleId, productId, quantity);
-  return ({ saleId, productId, quantity });
+  await Promise.all(sales
+    .map((sale) => salesModel.updateSale(saleId, sale.productId, sale.quantity)));
 };
 
 module.exports = {
